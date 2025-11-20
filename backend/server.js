@@ -1,7 +1,13 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import connectDB from "./config/database.js";
+
+// Get __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import routes
 import authRoutes from "./routes/auth.js";
@@ -10,6 +16,7 @@ import progressRoutes from "./routes/progress.js";
 import coachRoutes from "./routes/coach.js";
 import supplementRoutes from "./routes/supplement.js";
 import feedbackRoutes from "./routes/feedback.js";
+import orderRoutes from "./routes/order.js";
 
 // Load environment variables
 dotenv.config();
@@ -22,10 +29,18 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+    origin: [
+      process.env.CORS_ORIGIN || "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+      "http://localhost:5176",
+    ],
     credentials: true,
   })
 );
+
+// Serve static files from uploads directory
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Connect to database
 connectDB();
@@ -45,6 +60,7 @@ app.use("/api/progress", progressRoutes);
 app.use("/api/coaches", coachRoutes);
 app.use("/api/supplements", supplementRoutes);
 app.use("/api/feedback", feedbackRoutes);
+app.use("/api/orders", orderRoutes);
 
 // 404 handler
 app.use((req, res) => {

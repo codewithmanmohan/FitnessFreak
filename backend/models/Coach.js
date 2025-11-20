@@ -2,19 +2,53 @@ import mongoose from "mongoose";
 
 const coachSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    name: {
+      type: String,
+      required: [true, "Coach name is required"],
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Coach email is required"],
+      unique: true,
+      lowercase: true,
+    },
+    phone: {
+      type: String,
+      default: "",
+    },
+    age: {
+      type: Number,
       required: true,
     },
-    specialization: [
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+      default: "male",
+    },
+    specialty: [
       {
         type: String,
+        required: true,
       },
     ],
     experience: {
       type: Number,
       required: true, // in years
+    },
+    category: {
+      type: String,
+      enum: ["premium", "standard", "free"],
+      default: "standard",
+    },
+    charges: {
+      type: String,
+      enum: ["high", "medium-high", "medium", "affordable", "free"],
+      default: "affordable",
+    },
+    hourlyRate: {
+      type: Number,
+      default: 0,
     },
     certifications: [
       {
@@ -33,10 +67,19 @@ const coachSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    hourlyRate: {
-      type: Number,
-      required: true,
+    bio: {
+      type: String,
+      default: "",
     },
+    profileImage: {
+      type: String,
+      default: "",
+    },
+    responsibilities: [
+      {
+        type: String,
+      },
+    ],
     availability: [
       {
         day: String,
@@ -44,10 +87,6 @@ const coachSchema = new mongoose.Schema(
         endTime: String,
       },
     ],
-    bio: {
-      type: String,
-      default: "",
-    },
     clients: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -56,7 +95,11 @@ const coachSchema = new mongoose.Schema(
     ],
     isApproved: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }
