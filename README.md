@@ -1,2 +1,0 @@
-# FitnessFreak
-WebApp for Gym.
