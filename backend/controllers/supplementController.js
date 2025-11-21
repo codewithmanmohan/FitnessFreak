@@ -51,7 +51,13 @@ export const getSupplement = async (req, res) => {
 
 export const createSupplement = async (req, res) => {
   try {
-    const supplement = await Supplement.create(req.body);
+    // Prepare supplement data
+    const supplementData = {
+      ...req.body,
+      image: req.file ? `/uploads/supplements/${req.file.filename}` : req.body.image,
+    };
+
+    const supplement = await Supplement.create(supplementData);
 
     res.status(201).json({
       success: true,
@@ -68,9 +74,16 @@ export const createSupplement = async (req, res) => {
 
 export const updateSupplement = async (req, res) => {
   try {
+    let updateData = { ...req.body };
+
+    // If a new file is uploaded, update the image path
+    if (req.file) {
+      updateData.image = `/uploads/supplements/${req.file.filename}`;
+    }
+
     const supplement = await Supplement.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updateData,
       {
         new: true,
         runValidators: true,
