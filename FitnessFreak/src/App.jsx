@@ -33,8 +33,8 @@ function App() {
             <Route path="/coaches" element={<Coaches />} />
             <Route path="/plans" element={<Plans />} />
             <Route path="/availability" element={<Availability />} />
-            <Route path="/supplements" element={<Supplements />} />
-            <Route path="/supplement-shop" element={<SupplementShop />} />
+            <Route path="/supplements" element={<SupplementShop />} />
+            {/*<Route path="/supplement-shop" element={<SupplementShop />} />*/}
             <Route path="/cart" element={<CartPage />} />
             <Route path="/chatbot" element={<Chatbot />} />
             <Route
