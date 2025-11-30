@@ -60,7 +60,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/signup"
-              className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-200 font-semibold whitespace-nowrap"
+              className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-cyan-400 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold whitespace-nowrap"
             >
               Sign Up
             </Link>
