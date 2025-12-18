@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Dumbbell, MessageCircle } from "lucide-react";
+import { Menu, X, Dumbbell, MessageCircle, User } from "lucide-react";
 
-export default function Navbar() {
+export default function Navbar({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -52,12 +52,22 @@ export default function Navbar() {
             >
               <MessageCircle size={18} />
             </Link>
-            <Link
-              to="/login"
-              className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-cyan-400 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold whitespace-nowrap"
-            >
-              Login
-            </Link>
+            {!isLoggedIn && (
+              <Link
+                to="/login"
+                className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-cyan-400 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold whitespace-nowrap"
+              >
+                Login
+              </Link>
+            )}
+            {isLoggedIn && (
+              <Link
+                to="/login"
+                className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-cyan-400 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold whitespace-nowrap"
+              >
+                Login
+              </Link>
+            )}
             <Link
               to="/signup"
               className="px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm text-cyan-400 border border-cyan-400 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold whitespace-nowrap"
