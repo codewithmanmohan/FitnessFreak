@@ -30,7 +30,7 @@ const Login = ({ setIsLoggedIn }) => {
 
       setIsLoggedIn(true);
       alert("Login successful!");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");
       console.error("Login error:", err);

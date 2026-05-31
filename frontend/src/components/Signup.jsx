@@ -35,7 +35,8 @@ export default function Signup() {
 
     try {
       const response = await authAPI.register({
-        name: formData.name,
+        firstName: formData.name.split(" ")[0],
+        lastName: formData.name.split(" ").slice(1).join(" ") || formData.name,
         email: formData.email,
         password: formData.password,
       });
@@ -45,7 +46,7 @@ export default function Signup() {
       localStorage.setItem("user", JSON.stringify(response.user));
 
       alert("Account created successfully!");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message || "Signup failed. Please try again.");
       console.error("Signup error:", err);

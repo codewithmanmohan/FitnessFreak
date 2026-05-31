@@ -4,52 +4,43 @@ const supplementSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
-      unique: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      enum: [
-        "protein",
-        "vitamin",
-        "mineral",
-        "amino_acid",
-        "creatine",
-        "bcaa",
-        "pre_workout",
-        "other",
-      ],
-      required: true,
-    },
-    brand: {
-      type: String,
-      required: true,
+      required: [true, "Supplement name is required"],
+      trim: true,
     },
     price: {
       type: Number,
-      required: true,
+      required: [true, "Price is required"],
+      min: 0,
     },
-    servingSize: {
+    category: {
       type: String,
-      required: true,
+      enum: ["protein", "aminoAcids", "creatine", "preWorkout", "vitamins", "omega3"],
+      required: [true, "Category is required"],
     },
-    servingsPerContainer: {
-      type: Number,
-      default: null,
-    },
-    benefits: [String],
-    ingredients: [String],
-    dosage: {
+    description: {
       type: String,
-      default: "",
+      required: [true, "Description is required"],
+    },
+    benefits: {
+      type: String,
+      required: [true, "Benefits are required"],
     },
     image: {
       type: String,
       default: "",
+    },
+    manufacturingDate: {
+      type: Date,
+      required: [true, "Manufacturing date is required"],
+    },
+    expiryDate: {
+      type: Date,
+      required: [true, "Expiry date is required"],
+    },
+    stock: {
+      type: Number,
+      default: 100,
+      min: 0,
     },
     rating: {
       type: Number,
@@ -57,7 +48,11 @@ const supplementSchema = new mongoose.Schema(
       min: 0,
       max: 5,
     },
-    inStock: {
+    reviews: {
+      type: Number,
+      default: 0,
+    },
+    isActive: {
       type: Boolean,
       default: true,
     },
