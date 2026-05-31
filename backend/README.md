@@ -1,3 +1,42 @@
+# Backend — FitnessFreak
+
+This is the Node.js + Express API for FitnessFreak. It exposes REST endpoints used by the frontend.
+
+## Requirements
+
+- Node.js 18+ and npm
+- MongoDB (connection via `MONGO_URI`)
+
+## Install & Run
+
+1. Install dependencies:
+
+   cd backend
+   npm install
+
+2. Start the server:
+
+   # check `package.json` for `start` or `dev` scripts
+
+   node server.js
+
+3. Recommended environment variables (create a `.env` file):
+
+```
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
+
+## Development
+
+- Use `nodemon` for auto-restart during development (if installed and configured).
+- Tests and linting may be present—see `package.json`.
+
+## Notes
+
+- Do not commit `.env` or other secret files. `backend/.gitignore` is included.
+
 # FitnessFreak Backend
 
 A comprehensive backend API for the FitnessFreak gym management application built with Node.js, Express, and MongoDB Atlas.

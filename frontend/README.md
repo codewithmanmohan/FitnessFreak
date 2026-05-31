@@ -1,3 +1,31 @@
+# Frontend — FitnessFreak
+
+This is the React frontend for FitnessFreak built with Vite.
+
+## Requirements
+
+- Node.js 18+ and npm
+
+## Scripts
+
+- `npm install` — install dependencies
+- `npm run dev` — start Vite dev server (default: http://localhost:5173)
+- `npm run build` — create production build in `dist/`
+- `npm run preview` — preview production build locally
+
+## Environment
+
+Create an `.env` or `.env.local` if you need to set runtime variables. Common example:
+
+```
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+## Notes
+
+- Check `package.json` for exact script names.
+- `frontend/.gitignore` is included to keep `node_modules/`, build output, and env files out of Git.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
