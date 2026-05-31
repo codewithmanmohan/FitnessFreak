@@ -73,28 +73,28 @@ export const apiCall = async (endpoint, options = {}) => {
 export const authAPI = {
   // Register new user
   register: (userData) =>
-    apiCall("/users/register", {
+    apiCall("/auth/signup", {
       method: "POST",
       body: userData,
     }),
 
   // Login user
   login: (credentials) =>
-    apiCall("/users/login", {
+    apiCall("/auth/login", {
       method: "POST",
       body: credentials,
     }),
 
   // Get current user profile
   getProfile: () =>
-    apiCall("/users/profile", {
+    apiCall("/auth/profile", {
       method: "GET",
       requiresAuth: true,
     }),
 
   // Update user profile
   updateProfile: (userData) =>
-    apiCall("/users/profile", {
+    apiCall("/auth/profile", {
       method: "PUT",
       body: userData,
       requiresAuth: true,
